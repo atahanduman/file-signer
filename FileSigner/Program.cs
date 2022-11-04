@@ -16,15 +16,15 @@ namespace FileSigner
                     rsaParameters = rsa.ExportParameters(true);
                 }
 
-                //Program.StoreParameters("C:\\Users\\ataha\\source\\repos\\FileSigner\\param.txt", rsaParameters);
-                rsaParameters = Program.GetParameters("C:\\Users\\ataha\\source\\repos\\FileSigner\\param.txt");
+                //Program.StoreParameters("path\\FileSigner\\param.txt", rsaParameters);
+                rsaParameters = Program.GetParameters("path\\FileSigner\\param.txt");
                 //Console.WriteLine(rsaParameters);
-                byte[] file = Program.GetFile("C:\\Users\\ataha\\source\\repos\\FileSigner\\testLog.log");
+                byte[] file = Program.GetFile("path\\FileSigner\\testLog.log");
 
                 //byte[] signedHash = Program.SignFile(file, rsaParameters);
                 byte[] signedHash; //= Program.SignFile(file, rsaParameters);
 
-                using (StreamReader sw = new StreamReader("C:\\Users\\ataha\\source\\repos\\FileSigner\\signed.txt"))
+                using (StreamReader sw = new StreamReader("path\\FileSigner\\signed.txt"))
                 {
                     signedHash = JsonConvert.DeserializeObject<byte[]>(sw.ReadToEnd());
                     sw.Close();
@@ -69,7 +69,7 @@ namespace FileSigner
                     //Create a signature for HashValue and return it.
                     byte[] SignedHash = RSAFormatter.CreateSignature(hash);
 
-                    using (StreamWriter sw = new StreamWriter("C:\\Users\\ataha\\source\\repos\\FileSigner\\signed.txt"))
+                    using (StreamWriter sw = new StreamWriter("path\\FileSigner\\signed.txt"))
                     {
                         sw.WriteLine(JsonConvert.SerializeObject(SignedHash));
                         sw.Close();
